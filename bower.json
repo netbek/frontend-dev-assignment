@@ -1,0 +1,16 @@
+{
+  "name": "frontend-dev-assignment",
+  "version": "0.0.1",
+  "dependencies": {
+    "MathJax": "~2.5.3",
+    "foundation": "~4.3.2",
+    "compass-mixins": "~1.0.2",
+    "respond": "~1.4.2",
+    "fastclick": "~1.0.6",
+    "html5shiv": "~3.7.3",
+    "normalize-css": "~3.0.3",
+    "loadcss": "~0.2.4",
+    "loadjs": "https://github.com/filamentgroup/loadJS.git#~0.2.3",
+    "filament-fixed": "~0.1.2"
+  }
+}
