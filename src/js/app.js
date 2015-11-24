@@ -208,7 +208,7 @@
         }
       }
       else {
-        if (open) {
+        if (open > 0) {
           html += '</li>';
         }
       }
@@ -219,7 +219,7 @@
       elm.setAttribute('id', id);
     }
 
-    while (open) {
+    while (open > 0) {
       open--;
       html += '</li>';
       html += '</ol>';
