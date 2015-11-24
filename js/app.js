@@ -1192,7 +1192,7 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2015-11-24T04:01Z
+ * Date: 2015-11-24T05:57Z
  */
 
 (function( global, factory ) {
@@ -10854,7 +10854,7 @@ return jQuery;
         }
       }
       else {
-        if (open) {
+        if (open > 0) {
           html += '</li>';
         }
       }
@@ -10865,7 +10865,7 @@ return jQuery;
       elm.setAttribute('id', id);
     }
 
-    while (open) {
+    while (open > 0) {
       open--;
       html += '</li>';
       html += '</ol>';
