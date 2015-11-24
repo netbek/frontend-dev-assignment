@@ -1,0 +1,68 @@
+/**
+ * Typography
+ *
+ * @author Hein Bekker <hein@netbek.co.za>
+ * @copyright (c) 2015 Hein Bekker
+ * @license http://www.gnu.org/licenses/agpl-3.0.txt AGPLv3
+ */
+
+$h1-font-size-small: $h1-font-size - em-calc(4);
+$h2-font-size-small: $h2-font-size - em-calc(2);
+$h3-font-size-small: $h3-font-size;
+$h4-font-size-small: $h4-font-size;
+$h5-font-size-small: $h5-font-size;
+$h6-font-size-small: $h6-font-size;
+
+/**
+ * Sub-header used in notes.
+ */
+@mixin note-header {
+  display: block;
+  font-family: $body-font-family;
+  font-size: $h5-font-size;
+  font-weight: bold;
+  font-style: normal;
+  line-height: $header-line-height;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+* html { font-size: 100%; }
+html { font-size: $base-font-size; }
+body { font-size: inherit; }
+
+a {
+  &:hover,
+    &:focus {
+    text-decoration: underline;
+  }
+}
+
+h1 {
+  font-size: $h1-font-size-small;
+  margin-bottom: $header-bottom-margin * 1.25;
+}
+
+h2 { font-size: $h2-font-size-small; }
+h3 { font-size: $h3-font-size-small; }
+h4 { font-size: $h4-font-size-small; }
+h5 { font-size: $h5-font-size-small; }
+h6 { font-size: $h6-font-size-small; }
+
+ul {
+  list-style-type: circle;
+}
+
+@media #{$medium} {
+  h1 { font-size: $h1-font-size; }
+  h2 { font-size: $h2-font-size; }
+  h3 { font-size: $h3-font-size; }
+  h4 { font-size: $h4-font-size; }
+  h5 { font-size: $h5-font-size; }
+  h6 { font-size: $h6-font-size; }
+}
+
+@media #{$xxlarge} {
+  html { font-size: 125%; }
+}

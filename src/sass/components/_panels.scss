@@ -1,0 +1,61 @@
+/**
+ * Panels
+ *
+ * @author Hein Bekker <hein@netbek.co.za>
+ * @copyright (c) 2015 Hein Bekker
+ * @license http://www.gnu.org/licenses/agpl-3.0.txt AGPLv3
+ */
+
+// We use these to control the background and border styles
+$panel-bg: $white !default;
+$panel-border-style: solid !default;
+$panel-border-size: 1px !default;
+
+// We use this % to control how much we darken things on hover
+$panel-border-color: $gainsboro !default;
+
+// We use these to set default inner padding and bottom margin
+$panel-margin-bottom: $paragraph-margin-bottom !default;
+$panel-padding: em-calc(20) !default;
+
+/*// We use these to set default font colors
+$panel-font-color: $oil !default;
+$panel-font-color-alt: $white !default;
+
+$panel-header-adjust: true !default;
+$callout-panel-link-color: $primary-color !default;
+$callout-panel-link-color-hover: scale-color($callout-panel-link-color, $lightness: -14%) !default;*/
+
+/**
+ * Panel.
+ *
+ * @param {String} $bg Background
+ * @param {Number} $padding Absolute value
+ * @param {Boolean|String} $border Shorthand for width, style and color, or TRUE to use default values
+ */
+@mixin panel($bg:$panel-bg, $padding:$panel-padding, $border:'') {
+  @if $bg {
+    background: $bg;
+  }
+
+  @if $border == true {
+    border: $panel-border-size $panel-border-style $panel-border-color;
+  }
+  @else if $border != '' {
+    border: $border;
+  }
+
+  margin-bottom: $panel-margin-bottom;
+
+  @if $padding {
+    padding: $padding;
+  }
+
+  // Respect the padding.
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+}

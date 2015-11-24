@@ -1,0 +1,450 @@
+/**
+ * App
+ *
+ * @author Hein Bekker <hein@netbek.co.za>
+ * @copyright (c) 2015 Hein Bekker
+ * @license http://www.gnu.org/licenses/agpl-3.0.txt AGPLv3
+ */
+
+@import 'compass';
+
+@import 'app.normalize';
+@import 'app.foundation';
+
+@import 'components/animations';
+@import 'components/panels';
+@import 'components/thumbs';
+@import 'components/type';
+
+@import 'fonts';
+
+$constrained-padding: 2em;
+$max-width: 800;
+$vert-spacing: 30;
+
+// Substitute for <noscript>
+.no-js {
+  body:before {
+    display: block;
+    width: 100%;
+    padding: 1em;
+    content: 'Please enable JavaScript.';
+    font-size: em-calc(14);
+    line-height: 1.3;
+    text-align: center;
+    background: $alizarin;
+    color: $white;
+    opacity: 0;
+    animation-name: fadein;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+  }
+}
+
+body {
+  background: $ghost;
+
+  > .toc {
+    @include side-nav;
+    padding: 0;
+    background: $white;
+    border-style: $panel-border-style;
+    border-width: 0;
+    border-bottom-width: $panel-border-size;
+    border-color: $panel-border-color;
+
+    ol, ul {
+      li {
+        ol, ul, li {
+          font-size: 1em; /* Override nested font-size change */
+        }
+      }
+    }
+
+    .constrained {
+      margin: 0 auto;
+      max-width: em-calc($max-width);
+    }
+
+    .toc-bar-wrapper {
+      padding: em-calc(14) 0;
+      background: $belize-hole;
+
+      .toc-bar {
+        display: table;
+        width: 100%;
+
+        .title-wrapper {
+          display: table-cell;
+          width: 100%;
+          text-align: left;
+          vertical-align: middle;
+        }
+
+        .menu-wrapper {
+          display: none;
+          text-align: right;
+          vertical-align: middle;
+        }
+      }
+
+      .title {
+        margin: 0;
+        padding: 0;
+        font-size: $h4-font-size-small;
+        text-transform: capitalize;
+        color: $white;
+      }
+
+      .menu {
+        display: block;
+        font-family: $body-font-family;
+        font-size: $h5-font-size;
+        font-weight: bold;
+        font-style: normal;
+        line-height: $header-line-height;
+        color: $white;
+
+        a {
+          color: $white;
+          text-decoration: none;
+
+          &:hover,
+            &:focus {
+            color: $white;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .list-wrapper {
+      padding: em-calc(16) 0;
+
+      .list {
+        list-style: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-#{$default-float}: 0;
+
+        .item {
+          list-style: none;
+          margin-top: em-calc(6);
+          margin-bottom: em-calc(6);
+
+          a {
+            display: inline;
+          }
+        }
+
+        .list {
+          margin-#{$default-float}: $list-side-margin;
+        }
+      }
+    }
+  }
+
+  > .section {
+    margin: 0 auto;
+    padding: em-calc(20) 5%;
+    max-width: em-calc($max-width);
+
+    > .section {
+      > .title {
+        font-size: $h2-font-size-small;
+        border-bottom: 1px solid $iron;
+      }
+
+      margin-bottom: em-calc(50);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    figure {
+      margin: 0 0 $paragraph-margin-bottom;
+
+      img {
+        @include thumb-without-hover;
+      }
+
+      figcaption {
+        margin-top: $paragraph-margin-bottom / 2;
+        text-align: center;
+        font-style: italic;
+        font-size: em-calc(14);
+        line-height: $paragraph-line-height;
+      }
+    }
+
+    .note {
+      @include panel($white, em-calc(20));
+      margin: em-calc($vert-spacing) auto;
+      border-left: 10px $panel-border-style $panel-border-color;
+      font-style: italic;
+
+      .label {
+        @include note-header;
+      }
+
+      &.note {
+        border-left-color: $peter-river;
+      }
+
+      &.tip {
+        border-left-color: $sun-flower;
+      }
+
+      &.visit {
+        border-left-color: $emerald;
+      }
+    }
+
+    .worked_example {
+      @include panel($white, em-calc(20), true);
+      margin: em-calc($vert-spacing) auto;
+      @include border-radius(6px);
+
+      .label {
+        @include note-header;
+      }
+
+      > .title {
+        font-size: $h2-font-size-small;
+      }
+
+      .question {
+        @include panel($smoke, em-calc(15));
+      }
+
+      .workstep {
+        @include panel(false, false);
+
+        .title {
+          font-size: $h3-font-size-small;
+        }
+      }
+    }
+
+    .exercises {
+      @include panel($white, em-calc(20), 10px $panel-border-style $panel-border-color);
+      margin: em-calc($vert-spacing) auto;
+      @include border-radius(6px);
+
+      > .title {
+        font-size: $h2-font-size-small;
+      }
+
+      .problemset {
+        .answers-section {
+          .title {
+            font-size: $h3-font-size-small;
+          }
+
+          .answers-actions {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+.fixed-supported {
+  body {
+    &.has-sticky {
+      > .toc {
+        .sticky {
+          position: fixed;
+          z-index: 1000;
+          top: 0;
+          left: 0;
+          width: 100%;
+        }
+
+        .title-wrapper {
+          width: 50%;
+        }
+
+        .menu-wrapper {
+          display: table-cell;
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media #{$medium} {
+  $vert-spacing: 50;
+
+  body {
+    > .section {
+      padding: em-calc($vert-spacing) $constrained-padding;
+
+      > .section {
+        > .title {
+          font-size: $h2-font-size;
+        }
+      }
+
+      .note {
+        margin: em-calc($vert-spacing) auto;
+        padding: em-calc(20) em-calc(30);
+        border-left-width: 15px;
+      }
+
+      .worked_example {
+        margin: em-calc($vert-spacing) auto;
+        padding: em-calc(30);
+
+        > .title {
+          font-size: $h2-font-size;
+        }
+
+        .workstep {
+          .title {
+            font-size: $h3-font-size;
+          }
+        }
+      }
+
+      .exercises {
+        margin: em-calc($vert-spacing) auto;
+        padding: em-calc(30);
+        border-width: 15px;
+
+        > .title {
+          font-size: $h2-font-size;
+        }
+
+        .problemset {
+          .answers-section {
+            .title {
+              font-size: $h3-font-size;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .js {
+    body {
+      &.has-toc {
+        > .toc {
+          .constrained {
+            padding: 0 $constrained-padding;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media #{$large} {
+  $toc-width: 250;
+  $content-padding: 50;
+
+  .js {
+    body {
+      &.has-toc {
+        > .toc {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          width: em-calc($toc-width);
+          overflow-x: hidden;
+          overflow-y: hidden;
+          min-height: 100%;
+          z-index: 200;
+
+          background: $panel-bg;
+          border-style: $panel-border-style;
+          border-width: 0;
+          border-right-width: $panel-border-size;
+          border-color: $panel-border-color;
+
+          .scroll {
+            /*width: em-calc($toc-width + 20);*/
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            height: 100%;
+          }
+
+          .constrained {
+            padding: 0;
+          }
+
+          .toc-bar-wrapper {
+            padding: em-calc(14);
+          }
+
+          .list-wrapper {
+            .list {
+              .item {
+                margin-top: 0;
+                margin-bottom: 0;
+
+                a {
+                  display: block;
+                  padding: em-calc(8) em-calc(20);
+
+                  &:hover,
+                    &:focus {
+                    text-decoration: none;
+                    background: $white-smoke;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        > .section {
+          padding-left: em-calc($toc-width + $content-padding);
+          padding-right: em-calc($content-padding);
+          min-height: 100%;
+          max-width: em-calc($max-width + $toc-width + $content-padding + $content-padding);
+        }
+      }
+    }
+  }
+}
+
+@media #{$xlarge} {
+  $toc-width: 300;
+  $content-padding: 50;
+
+  .js {
+    body {
+      &.has-toc {
+        > .toc {
+          width: em-calc($toc-width);
+
+          .list-wrapper {
+            padding: em-calc(25) 0;
+
+            .list {
+              .item {
+                a {
+                  padding: em-calc(8) em-calc(30);
+                }
+              }
+            }
+          }
+        }
+
+        > .section {
+          padding-left: em-calc($toc-width + $content-padding);
+          max-width: em-calc($max-width + $toc-width + $content-padding + $content-padding);
+        }
+      }
+    }
+  }
+}

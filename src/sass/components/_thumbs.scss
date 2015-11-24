@@ -1,0 +1,21 @@
+/**
+ * Thumbnails
+ *
+ * @author Hein Bekker <hein@netbek.co.za>
+ * @copyright (c) 2015 Hein Bekker
+ * @license http://www.gnu.org/licenses/agpl-3.0.txt AGPLv3
+ */
+
+@import 'foundation/components/thumbs';
+
+/**
+ * Image thumbnail with the same shadow in normal and hover state.
+ */
+@mixin thumb-without-hover {
+  @include thumb;
+
+  &:hover,
+    &:focus {
+    box-shadow: $thumb-box-shadow;
+  }
+}
